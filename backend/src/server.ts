@@ -17,5 +17,3 @@ mongoose
 
 // secure password
 // Mz8DFu3iMgOKTZsk
-
-// mongodb+srv://deadsoulartist:<password>@cluster0.9yirpqc.mongodb.net/?retryWrites=true&w=majority
