@@ -7,12 +7,17 @@ const app = express();
 //end point
 app.get("/", async (req, res, next) => {
   try {
-    throw Error("Bazinga");
+    // throw Error("Bazinga");
     const notes = await NoteModel.find().exec();
     res.status(200).json(notes);
   } catch (error) {
     next(error);
   }
+});
+
+//error handling in case of path that is not present
+app.use((req, res, next) => {
+  next(Error("Error 404 page not found"));
 });
 
 //usually used to handle error cases
