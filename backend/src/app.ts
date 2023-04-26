@@ -4,6 +4,10 @@ import notesRoute from "./routes/notes";
 
 const app = express();
 
+//to set data format
+app.use(express.json());
+
+//endpoint
 app.use("/api/notes", notesRoute);
 
 //error handling in case of path that is not present
