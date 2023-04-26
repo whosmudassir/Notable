@@ -1,19 +1,10 @@
 import "dotenv/config";
 import express, { Request, Response, NextFunction } from "express";
-import NoteModel from "./models/note";
+import notesRoute from "./routes/notes";
 
 const app = express();
 
-//end point
-app.get("/", async (req, res, next) => {
-  try {
-    // throw Error("Bazinga");
-    const notes = await NoteModel.find().exec();
-    res.status(200).json(notes);
-  } catch (error) {
-    next(error);
-  }
-});
+app.use("/api/notes", notesRoute);
 
 //error handling in case of path that is not present
 app.use((req, res, next) => {
