@@ -4,6 +4,7 @@ import env from "./util/validateEnv";
 
 const port = env.PORT;
 
+//mongo db connection + running server on port
 mongoose
   .connect(env.MONGO_CONNECTION_STRING)
   .then(() => {
