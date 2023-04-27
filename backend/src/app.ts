@@ -2,6 +2,7 @@ import "dotenv/config";
 import express, { Request, Response, NextFunction } from "express";
 import notesRoute from "./routes/notes";
 import morgan from "morgan";
+import createHttpError, { isHttpError } from "http-errors";
 
 const app = express();
 
@@ -17,15 +18,22 @@ app.use("/api/notes", notesRoute);
 
 //error handling in case of path that is not present
 app.use((req, res, next) => {
-  next(Error("Error 404 page not found"));
+  //from http-error package which is used to create errors
+  next(createHttpError(404, "Endpoint not found"));
 });
 
 //usually used to handle error cases in catch block
 app.use((error: unknown, req: Request, res: Response, next: NextFunction) => {
   console.log(error);
   let errorMessage = "An unknown error occurred";
-  if (error instanceof Error) errorMessage = error.message;
-  res.status(500).json({ error: errorMessage });
+  let statusCode = 500;
+  //setting up error using http-errors
+  if (isHttpError(error)) {
+    statusCode = error.status;
+    errorMessage = error.message;
+  }
+
+  res.status(statusCode).json({ error: errorMessage });
 });
 
 export default app;
