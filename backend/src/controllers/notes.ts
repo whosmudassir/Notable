@@ -1,5 +1,6 @@
 import { RequestHandler } from "express";
 import NoteModel from "../models/note";
+import createHttpError from "http-errors";
 
 //get all notes
 export const getNotes: RequestHandler = async (req, res, next) => {
@@ -24,13 +25,27 @@ export const getSingleNote: RequestHandler = async (req, res, next) => {
   }
 };
 
+interface CreateNoteBody {
+  title?: string;
+  text?: string;
+}
+
+//declaring types inside <> here requires to mention - urlArguments, urlParams, requestBody, 4th unknown
 //create a note
-export const createNote: RequestHandler = async (req, res, next) => {
+export const createNote: RequestHandler<
+  unknown,
+  unknown,
+  CreateNoteBody,
+  unknown
+> = async (req, res, next) => {
   //data sending to db
   const title = req.body.title;
   const text = req.body.text;
 
   try {
+    if (!title) {
+      throw createHttpError(400, "Notes must have a title");
+    }
     const newNote = NoteModel.create({
       title: title,
       text: text,
