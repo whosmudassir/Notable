@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Note as NoteModel } from "../../models/note";
 import { Card, Modal, Button } from "react-bootstrap";
+import styles from "../../styles/Note.module.css";
 
 interface NoteProps {
   note: NoteModel;
@@ -12,9 +13,10 @@ const Note = ({ note }: NoteProps) => {
   const handleShow = () => setShow(true);
   return (
     <div>
-      <Card body onClick={handleShow}>
+      <Card body onClick={handleShow} className={styles.cardStyles}>
         {note.title}
       </Card>
+
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>
