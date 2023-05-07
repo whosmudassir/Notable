@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 
 import "./App.css";
-import { Note } from "./models/note";
+import { Note as NoteModel } from "./models/note";
+import Note from "./components/Note";
 
 function App() {
-  const [notes, setNotes] = useState<Note[]>([]);
+  const [notes, setNotes] = useState<NoteModel[]>([]);
   useEffect(() => {
     const fetchNotes = async () => {
       try {
@@ -23,8 +24,10 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header"></header>
+    <div>
+      {notes.map((note) => (
+        <Note note={note} key={note._id} />
+      ))}
     </div>
   );
 }
