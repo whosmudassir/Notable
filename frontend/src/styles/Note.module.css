@@ -1,5 +1,22 @@
 .cardStyles {
   background-color: #fff;
-  width: 200px;
+  min-width: 200px;
+  padding: 40px;
   height: 150px;
+  border-radius: 30px;
+  border-color: #fff;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+}
+
+.cardWrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
 }

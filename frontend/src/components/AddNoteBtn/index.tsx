@@ -13,11 +13,11 @@ const AddNoteBtn = () => {
       <Button
         size="sm"
         style={{
-          padding: "12px 20px",
-          borderRadius: "12px",
+          padding: "12px 30px",
+          borderRadius: "14px",
           backgroundColor: "#e8c5ff",
-          borderColor: "#403C38",
-          borderWidth: "1.5px",
+
+          borderWidth: "0px",
           color: "#403C38",
         }}
       >

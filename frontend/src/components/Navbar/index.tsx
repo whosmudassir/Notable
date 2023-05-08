@@ -5,7 +5,8 @@ const Navbar = () => {
   return (
     <div
       style={{
-        padding: "30px",
+        paddingTop: "30px",
+        paddingBottom: "22px",
         display: "flex",
         justifyContent: "center",
       }}

@@ -13,7 +13,7 @@ const Note = ({ note }: NoteProps) => {
   const handleShow = () => setShow(true);
   return (
     <div>
-      <Card body onClick={handleShow} className={styles.cardStyles}>
+      <Card onClick={handleShow} className={styles.cardStyles}>
         {note.title}
       </Card>
 

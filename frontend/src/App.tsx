@@ -5,6 +5,7 @@ import Note from "./components/Note";
 import { Container, Row, Col } from "react-bootstrap";
 import Navbar from "./components/Navbar";
 import AddNoteBtn from "./components/AddNoteBtn";
+import styles from "./styles/Note.module.css";
 
 function App() {
   const [notes, setNotes] = useState<NoteModel[]>([]);
@@ -29,8 +30,8 @@ function App() {
     <>
       <Navbar />
       <AddNoteBtn />
-      <Container>
-        <Row xs={1} md={2} xl={3}>
+      <Container className={styles.cardWrapper}>
+        <Row xs={1} md={2} lg={3} xl={4} className={"g-4"}>
           {notes.map((note) => (
             <Col>
               <Note note={note} key={note._id} />
