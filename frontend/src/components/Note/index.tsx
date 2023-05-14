@@ -17,11 +17,16 @@ const Note = ({ note }: NoteProps) => {
         {note.title}
       </Card>
 
-      <Modal show={show} onHide={handleClose} centered>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        centered
+        contentClassName={styles.modalWrapper}
+      >
         <Modal.Header closeButton>
           <Modal.Title>
             {" "}
-            {note.title} {note.createdAt}
+            {note.title} -- {note.createdAt}
           </Modal.Title>
           <p>{note.createdAt}</p>
           <p>{note.updatedAt}</p>
