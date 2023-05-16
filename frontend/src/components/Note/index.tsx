@@ -24,15 +24,18 @@ const Note = ({ note }: NoteProps) => {
         contentClassName={styles.modalWrapper}
       >
         <Modal.Header closeButton>
-          <Modal.Title>
-            {" "}
-            {note.title} -- {note.createdAt}
-          </Modal.Title>
-          <p>{note.createdAt}</p>
-          <p>{note.updatedAt}</p>
+          <Modal.Title>{note.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body> {note.text}</Modal.Body>
-        <Modal.Footer></Modal.Footer>
+        {note.createdAt && (
+          <Modal.Footer
+            style={{ display: "flex", justifyContent: "flex-start" }}
+          >
+            <p>
+              {note.createdAt} {note.updatedAt}
+            </p>
+          </Modal.Footer>
+        )}
       </Modal>
     </div>
   );

@@ -34,3 +34,8 @@
   border-width: 0px;
   color: #403c38;
 }
+
+.primaryBtn:hover {
+  background-color: #e8c5ff;
+  color: #403c38;
+}
