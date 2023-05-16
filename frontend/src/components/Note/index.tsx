@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Note as NoteModel } from "../../models/note";
 import { Card, Modal, Button } from "react-bootstrap";
 import styles from "../../styles/Note.module.css";
+import { dateFormatter } from "../../util/dateFortmatter";
 
 interface NoteProps {
   note: NoteModel;
@@ -11,6 +12,15 @@ const Note = ({ note }: NoteProps) => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  let updatedDate: string;
+
+  if (note.updatedAt > note.createdAt) {
+    updatedDate = "Updated at : " + dateFormatter(note.updatedAt);
+  } else {
+    updatedDate = "Created at : " + dateFormatter(note.createdAt);
+  }
+
   return (
     <div>
       <Card onClick={handleShow} className={styles.cardStyles}>
@@ -31,9 +41,7 @@ const Note = ({ note }: NoteProps) => {
           <Modal.Footer
             style={{ display: "flex", justifyContent: "flex-start" }}
           >
-            <p>
-              {note.createdAt} {note.updatedAt}
-            </p>
+            <p>{updatedDate}</p>
           </Modal.Footer>
         )}
       </Modal>
