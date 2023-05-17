@@ -6,16 +6,14 @@ import { Container, Row, Col } from "react-bootstrap";
 import Navbar from "./components/Navbar";
 import AddNoteBtn from "./components/AddNoteBtn";
 import styles from "./styles/Note.module.css";
+import { fetchNotes } from "./network/notes_api";
 
 function App() {
   const [notes, setNotes] = useState<NoteModel[]>([]);
   useEffect(() => {
-    const fetchNotes = async () => {
+    const fetchData = async () => {
       try {
-        const resp = await fetch("/api/notes", {
-          method: "GET",
-        });
-        const notes = await resp.json();
+        const notes = await fetchNotes();
         setNotes(notes);
         console.log(notes);
       } catch (e) {
@@ -23,7 +21,7 @@ function App() {
       }
     };
 
-    fetchNotes();
+    fetchData();
   }, []);
 
   return (
