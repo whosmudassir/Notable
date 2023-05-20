@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import AddNoteBtn from "./components/AddNoteBtn";
 import styles from "./styles/Note.module.css";
 import { fetchNotes } from "./network/notes_api";
+import AddNoteModal from "./components/AddNoteModal";
 
 function App() {
   const [notes, setNotes] = useState<NoteModel[]>([]);
@@ -27,7 +28,8 @@ function App() {
   return (
     <>
       <Navbar />
-      <AddNoteBtn />
+      <AddNoteModal />
+
       <Container className={styles.cardWrapper}>
         <Row xs={1} md={2} lg={3} xl={4} className={"g-4"}>
           {notes.map((note) => (

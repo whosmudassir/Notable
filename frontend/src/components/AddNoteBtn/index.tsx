@@ -2,7 +2,11 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import styles from "../../styles/Note.module.css";
 
-const AddNoteBtn = () => {
+interface AddNoteBtnProps {
+  onClick: () => void;
+}
+
+const AddNoteBtn = ({ onClick }: AddNoteBtnProps) => {
   return (
     <div
       style={{
@@ -11,7 +15,7 @@ const AddNoteBtn = () => {
         justifyContent: "center",
       }}
     >
-      <Button size="sm" className={styles.primaryBtn}>
+      <Button size="sm" className={styles.primaryBtn} onClick={onClick}>
         + Add note
       </Button>
     </div>
