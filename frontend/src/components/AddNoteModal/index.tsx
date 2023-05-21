@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import Form from "react-bootstrap/Form";
 import { Card, Modal, Button } from "react-bootstrap";
 import styles from "../../styles/Note.module.css";
 import AddNoteBtn from "../AddNoteBtn";
@@ -21,9 +21,15 @@ const AddNoteModal = () => {
         contentClassName={styles.modalWrapper}
       >
         <Modal.Header closeButton>
-          <Modal.Title>fdfds</Modal.Title>
+          <Modal.Title>New Note</Modal.Title>
         </Modal.Header>
-        <Modal.Body> sdfsdfdsf</Modal.Body>
+        <Modal.Body>
+          <Form id="addNoteForm">
+            <Form.Group className="mb-3">
+              <Form.Control as="textarea" rows={8} placeholder="Your note " />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
         {/* {note.createdAt && (
           <Modal.Footer
             style={{ display: "flex", justifyContent: "flex-start" }}
