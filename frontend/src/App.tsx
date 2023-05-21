@@ -28,7 +28,12 @@ function App() {
   return (
     <>
       <Navbar />
-      <AddNoteModal />
+      <AddNoteModal
+        onNoteSaved={(newNote) => {
+          console.log("New note:::: :::", newNote.title);
+          setNotes([...notes, newNote]);
+        }}
+      />
 
       <Container className={styles.cardWrapper}>
         <Row xs={1} md={2} lg={3} xl={4} className={"g-4"}>

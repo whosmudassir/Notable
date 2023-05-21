@@ -16,7 +16,7 @@ export const fetchNotes = async () => {
   return resp.json();
 };
 
-interface NoteInput {
+export interface NoteInput {
   title: string;
   text?: string;
 }
