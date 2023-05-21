@@ -11,14 +11,10 @@
   flex-direction: row;
   align-items: center;
   text-align: center;
+  overflow: hidden;
 }
 
 .cardWrapper {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  align-items: center;
-  text-align: center;
   padding: 0px 40px 40px 40px;
 }
 

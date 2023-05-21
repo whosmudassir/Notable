@@ -23,7 +23,7 @@ function App() {
     };
 
     fetchData();
-  }, []);
+  }, [notes]);
 
   return (
     <>
