@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import styles from "../../styles/Note.module.css";
+import { FaPlus } from "react-icons/fa";
 
 interface AddNoteBtnProps {
   onClick: () => void;
@@ -16,7 +17,7 @@ const AddNoteBtn = ({ onClick }: AddNoteBtnProps) => {
       }}
     >
       <Button size="sm" className={styles.primaryBtn} onClick={onClick}>
-        + Add note
+        <FaPlus /> Add note
       </Button>
     </div>
   );

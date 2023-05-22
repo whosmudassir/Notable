@@ -34,7 +34,7 @@ function App() {
     };
 
     fetchData();
-  }, [notes]);
+  }, []);
 
   const deleteNote = async (note: NoteModel) => {
     try {
