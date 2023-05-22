@@ -59,7 +59,7 @@ const AddNoteModal = ({ onClose, onNoteSaved }: AddNoteModalProps) => {
             <Form.Group className="mb-3">
               <Form.Control
                 as="textarea"
-                rows={10}
+                rows={16}
                 placeholder="Text"
                 {...register("text")}
               />

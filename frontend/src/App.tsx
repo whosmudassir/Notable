@@ -6,7 +6,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import Navbar from "./components/Navbar";
 import AddNoteBtn from "./components/AddNoteBtn";
 import styles from "./styles/Note.module.css";
-import { fetchNotes } from "./network/notes_api";
+import { NoteInput, deleteSingleNote, fetchNotes } from "./network/notes_api";
 import AddNoteModal from "./components/AddNoteModal";
 
 function App() {
@@ -36,9 +36,19 @@ function App() {
     fetchData();
   }, [notes]);
 
+  const deleteNote = async (note: NoteModel) => {
+    try {
+      await deleteSingleNote(note._id);
+      setNotes(notes.filter((existingNote) => existingNote._id !== note._id));
+    } catch (error) {
+      alert(error);
+    }
+  };
+
   return (
     <>
       <Navbar />
+
       <AddNoteBtn onClick={onOpen} />
       {show && (
         <AddNoteModal
@@ -49,12 +59,12 @@ function App() {
           }}
         />
       )}
-
+      {/* all notes */}
       <Container className={styles.cardWrapper}>
         <Row xs={1} md={2} lg={3} xl={4} className={"g-4"}>
           {notes.map((note) => (
             <Col>
-              <Note note={note} key={note._id} />
+              <Note note={note} key={note._id} onDeleteNote={deleteNote} />
             </Col>
           ))}
         </Row>
