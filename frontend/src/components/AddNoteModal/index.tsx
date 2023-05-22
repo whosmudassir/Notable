@@ -34,6 +34,7 @@ const AddNoteModal = ({ onClose, onNoteSaved }: AddNoteModalProps) => {
   return (
     <div>
       <Modal
+        fullscreen={true}
         show
         onHide={onClose}
         centered
@@ -58,7 +59,7 @@ const AddNoteModal = ({ onClose, onNoteSaved }: AddNoteModalProps) => {
             <Form.Group className="mb-3">
               <Form.Control
                 as="textarea"
-                rows={8}
+                rows={10}
                 placeholder="Text"
                 {...register("text")}
               />

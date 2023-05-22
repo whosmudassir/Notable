@@ -28,6 +28,7 @@ const Note = ({ note }: NoteProps) => {
       </Card>
 
       <Modal
+        fullscreen={true}
         show={show}
         onHide={handleClose}
         centered
