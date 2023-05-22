@@ -11,6 +11,17 @@ import AddNoteModal from "./components/AddNoteModal";
 
 function App() {
   const [notes, setNotes] = useState<NoteModel[]>([]);
+  const [show, setShow] = useState(false);
+
+  //modal open/close
+  const onClose = () => {
+    setShow(false);
+  };
+
+  const onOpen = () => {
+    setShow(true);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -28,12 +39,16 @@ function App() {
   return (
     <>
       <Navbar />
-      <AddNoteModal
-        onNoteSaved={(newNote) => {
-          console.log("New note:::: :::", newNote.title);
-          setNotes([...notes, newNote]);
-        }}
-      />
+      <AddNoteBtn onClick={onOpen} />
+      {show && (
+        <AddNoteModal
+          onClose={onClose}
+          onNoteSaved={(newNote) => {
+            setNotes([...notes, newNote]);
+            onClose();
+          }}
+        />
+      )}
 
       <Container className={styles.cardWrapper}>
         <Row xs={1} md={2} lg={3} xl={4} className={"g-4"}>

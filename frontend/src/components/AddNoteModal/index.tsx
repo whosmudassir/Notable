@@ -9,12 +9,11 @@ import { NoteInput } from "../../network/notes_api";
 import { Note } from "../../models/note";
 
 interface AddNoteModalProps {
+  onClose: () => void;
   onNoteSaved: (note: Note) => void;
 }
 
-const AddNoteModal = ({ onNoteSaved }: AddNoteModalProps) => {
-  const [show, setShow] = useState(false);
-
+const AddNoteModal = ({ onClose, onNoteSaved }: AddNoteModalProps) => {
   //form submit
   const {
     register,
@@ -25,30 +24,17 @@ const AddNoteModal = ({ onNoteSaved }: AddNoteModalProps) => {
   async function onSubmit(input: NoteInput) {
     try {
       const noteResponse = await createNote(input);
-      console.log(noteResponse.json);
       onNoteSaved(noteResponse);
-      setShow(false);
     } catch (e) {
       console.log("error", e);
       alert(e);
     }
   }
 
-  //modal open/close
-  const onClose = () => {
-    setShow(false);
-  };
-
-  const onOpen = () => {
-    setShow(true);
-  };
-
   return (
     <div>
-      <AddNoteBtn onClick={onOpen} />
-
       <Modal
-        show={show}
+        show
         onHide={onClose}
         centered
         contentClassName={styles.modalWrapper}
