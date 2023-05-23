@@ -7,11 +7,12 @@ import Navbar from "./components/Navbar";
 import AddNoteBtn from "./components/AddNoteBtn";
 import styles from "./styles/Note.module.css";
 import { NoteInput, deleteSingleNote, fetchNotes } from "./network/notes_api";
-import AddNoteModal from "./components/AddNoteModal";
+import AddEditNoteModal from "./components/AddEditNoteModal";
 
 function App() {
   const [notes, setNotes] = useState<NoteModel[]>([]);
   const [show, setShow] = useState(false);
+  const [noteToEdit, setNoteToEdit] = useState<NoteModel | null>(null);
 
   //modal open/close
   const onClose = () => {
@@ -45,13 +46,18 @@ function App() {
     }
   };
 
+  const editNote = (note: NoteModel) => {
+    console.log("editenote :  :: :: : ", note);
+    setNoteToEdit(note);
+  };
+
   return (
     <>
       <Navbar />
 
       <AddNoteBtn onClick={onOpen} />
       {show && (
-        <AddNoteModal
+        <AddEditNoteModal
           onClose={onClose}
           onNoteSaved={(newNote) => {
             setNotes([...notes, newNote]);
@@ -59,12 +65,36 @@ function App() {
           }}
         />
       )}
+
+      {noteToEdit && (
+        <AddEditNoteModal
+          onClose={() => setNoteToEdit(null)}
+          noteToEdit={noteToEdit}
+          onNoteSaved={(updatedNote) => {
+            console.log(";:::::::: updated Ntioee  ", updatedNote);
+            setNotes(
+              notes.map((existingNote) =>
+                existingNote._id === updatedNote._id
+                  ? updatedNote
+                  : existingNote
+              )
+            );
+            setNoteToEdit(null);
+          }}
+        />
+      )}
+
       {/* all notes */}
       <Container className={styles.cardWrapper}>
         <Row xs={1} md={2} lg={3} xl={4} className={"g-4"}>
           {notes.map((note) => (
             <Col>
-              <Note note={note} key={note._id} onDeleteNote={deleteNote} />
+              <Note
+                note={note}
+                key={note._id}
+                onDeleteNote={deleteNote}
+                onEditNote={setNoteToEdit}
+              />
             </Col>
           ))}
         </Row>

@@ -4,30 +4,48 @@ import { Card, Modal, Button } from "react-bootstrap";
 import styles from "../../styles/Note.module.css";
 import AddNoteBtn from "../AddNoteBtn";
 import { useForm } from "react-hook-form";
-import { createNote } from "../../network/notes_api";
+import { createNote, updateSingleNote } from "../../network/notes_api";
 import { NoteInput } from "../../network/notes_api";
 import { Note } from "../../models/note";
 
-interface AddNoteModalProps {
+interface AddEditNoteModalProps {
+  noteToEdit?: Note;
   onClose: () => void;
   onNoteSaved: (note: Note) => void;
 }
 
-const AddNoteModal = ({ onClose, onNoteSaved }: AddNoteModalProps) => {
+const AddEditNoteModal = ({
+  noteToEdit,
+  onClose,
+  onNoteSaved,
+}: AddEditNoteModalProps) => {
   //form submit
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<NoteInput>();
+  } = useForm<NoteInput>({
+    defaultValues: {
+      title: noteToEdit?.title || "",
+      text: noteToEdit?.text || "",
+    },
+  });
 
   async function onSubmit(input: NoteInput) {
     try {
-      const noteResponse = await createNote(input);
+      let noteResponse: Note;
+
+      if (noteToEdit) {
+        console.log(":::: : : resp 2", input);
+        noteResponse = await updateSingleNote(noteToEdit._id, input);
+      } else {
+        noteResponse = await createNote(input);
+      }
+      console.log(":::: : : resp 3", noteResponse);
       onNoteSaved(noteResponse);
     } catch (e) {
       console.log("error", e);
-      alert(e);
+      // alert(e);
     }
   }
 
@@ -41,7 +59,9 @@ const AddNoteModal = ({ onClose, onNoteSaved }: AddNoteModalProps) => {
         contentClassName={styles.modalWrapper}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Your New Note</Modal.Title>
+          <Modal.Title>
+            {noteToEdit ? "Edit Note" : "Your New Note"}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form id="addNoteForm" onSubmit={handleSubmit(onSubmit)}>
@@ -76,4 +96,4 @@ const AddNoteModal = ({ onClose, onNoteSaved }: AddNoteModalProps) => {
   );
 };
 
-export default AddNoteModal;
+export default AddEditNoteModal;

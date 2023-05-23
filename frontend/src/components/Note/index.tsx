@@ -3,13 +3,14 @@ import { Note as NoteModel } from "../../models/note";
 import { Card, Modal, Button } from "react-bootstrap";
 import styles from "../../styles/Note.module.css";
 import { dateFormatter } from "../../util/dateFortmatter";
-import { MdDelete } from "react-icons/md";
+import { MdDelete, MdModeEdit } from "react-icons/md";
 
 interface NoteProps {
   note: NoteModel;
   onDeleteNote: (note: NoteModel) => void;
+  onEditNote: (note: NoteModel) => void;
 }
-const Note = ({ note, onDeleteNote }: NoteProps) => {
+const Note = ({ note, onDeleteNote, onEditNote }: NoteProps) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -50,9 +51,15 @@ const Note = ({ note, onDeleteNote }: NoteProps) => {
             {note.title}
           </Modal.Title>
 
+          <MdModeEdit
+            size={24}
+            style={{ marginRight: "14px", cursor: "pointer" }}
+            className="text-muted"
+            onClick={() => onEditNote(note)}
+          />
           <MdDelete
             size={24}
-            style={{ marginRight: "10px", cursor: "pointer" }}
+            style={{ marginRight: "14px", cursor: "pointer" }}
             className="text-muted"
             onClick={(e) => {
               onDeleteNote(note);
