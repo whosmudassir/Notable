@@ -36,16 +36,14 @@ const AddEditNoteModal = ({
       let noteResponse: Note;
 
       if (noteToEdit) {
-        console.log(":::: : : resp 2", input);
         noteResponse = await updateSingleNote(noteToEdit._id, input);
       } else {
         noteResponse = await createNote(input);
       }
-      console.log(":::: : : resp 3", noteResponse);
       onNoteSaved(noteResponse);
     } catch (e) {
       console.log("error", e);
-      // alert(e);
+      alert(e);
     }
   }
 
