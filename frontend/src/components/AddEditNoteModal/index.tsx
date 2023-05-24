@@ -86,7 +86,7 @@ const AddEditNoteModal = ({
         </Modal.Body>
         <Modal.Footer>
           <Button type="submit" form="addNoteForm" disabled={isSubmitting}>
-            Create
+            {noteToEdit ? "Save" : "Add"}
           </Button>
         </Modal.Footer>
       </Modal>
