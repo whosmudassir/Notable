@@ -108,7 +108,7 @@ export const updateNote: RequestHandler<
     //get updated note to render on ui
     const updatedNote = await note.save();
     //return in it api
-    res.status(200).json(updateNote);
+    res.status(200).json(updatedNote);
   } catch (error) {
     next(error);
   }
