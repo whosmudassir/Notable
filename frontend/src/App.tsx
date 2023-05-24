@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import { Note as NoteModel } from "./models/note";
 import Note from "./components/Note";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Spinner, Alert } from "react-bootstrap";
 import Navbar from "./components/Navbar";
 import AddNoteBtn from "./components/AddNoteBtn";
 import styles from "./styles/Note.module.css";
@@ -13,6 +13,8 @@ function App() {
   const [notes, setNotes] = useState<NoteModel[]>([]);
   const [show, setShow] = useState(false);
   const [noteToEdit, setNoteToEdit] = useState<NoteModel | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [showNotesError, setShowNotesError] = useState(false);
 
   //modal open/close
   const onClose = () => {
@@ -26,11 +28,14 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setShowNotesError(false);
+        setLoading(true);
         const notes = await fetchNotes();
         setNotes(notes);
-        console.log(notes);
       } catch (e) {
-        alert(e);
+        setShowNotesError(true);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -44,11 +49,6 @@ function App() {
     } catch (error) {
       alert(error);
     }
-  };
-
-  const editNote = (note: NoteModel) => {
-    console.log("editenote :  :: :: : ", note);
-    setNoteToEdit(note);
   };
 
   return (
@@ -74,7 +74,6 @@ function App() {
           onClose={() => setNoteToEdit(null)}
           noteToEdit={noteToEdit}
           onNoteSaved={(updatedNote) => {
-            console.log(";:::::::: updated Ntioee  ", updatedNote);
             setNotes(
               notes.map((existingNote) =>
                 existingNote._id === updatedNote._id
@@ -89,18 +88,49 @@ function App() {
 
       {/* all notes */}
       <Container className={styles.cardWrapper}>
-        <Row xs={1} md={2} lg={3} xl={4} className={"g-4"}>
-          {notes.map((note) => (
-            <Col>
-              <Note
-                note={note}
-                key={note._id}
-                onDeleteNote={deleteNote}
-                onEditNote={setNoteToEdit}
-              />
-            </Col>
-          ))}
-        </Row>
+        {loading ? (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Spinner animation="border" />
+          </div>
+        ) : showNotesError ? (
+          <Alert variant="danger">
+            <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
+            <p>Please refresh the page</p>
+          </Alert>
+        ) : (
+          <>
+            {notes.length > 0 ? (
+              <Row xs={1} md={2} lg={3} xl={4} className={"g-4"}>
+                {notes.map((note) => (
+                  <Col>
+                    <Note
+                      note={note}
+                      key={note._id}
+                      onDeleteNote={deleteNote}
+                      onEditNote={setNoteToEdit}
+                    />
+                  </Col>
+                ))}
+              </Row>
+            ) : (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <p> No Notes Found</p>
+              </div>
+            )}
+          </>
+        )}
       </Container>
     </>
   );
