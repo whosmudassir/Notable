@@ -56,6 +56,8 @@ function App() {
       <Navbar />
 
       <AddNoteBtn onClick={onOpen} />
+
+      {/* add note modal */}
       {show && (
         <AddEditNoteModal
           onClose={onClose}
@@ -66,6 +68,7 @@ function App() {
         />
       )}
 
+      {/* edit note modal */}
       {noteToEdit && (
         <AddEditNoteModal
           onClose={() => setNoteToEdit(null)}
