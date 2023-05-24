@@ -55,7 +55,7 @@ export const createNote: RequestHandler<
     if (!title) {
       throw createHttpError(400, "Notes must have a title");
     }
-    const newNote = NoteModel.create({
+    const newNote = await NoteModel.create({
       title: title,
       text: text,
     });
