@@ -1,6 +1,7 @@
 import { RequestHandler } from "express";
 import createHttpError from "http-errors";
 import UserModel from "../models/user";
+import bcrypt from "bcrypt";
 
 interface SignUpBody {
   username?: string;
@@ -42,6 +43,16 @@ export const signUp: RequestHandler<
         "Email already registered, Please login instead"
       );
     }
+
+    const passwordHashed = await bcrypt.hash(passwordRaw, 10);
+
+    const newUser = await UserModel.create({
+      username: username,
+      email: email,
+      password: passwordHashed,
+    });
+
+    res.status(201).json(newUser);
   } catch (error) {
     next(error);
   }
