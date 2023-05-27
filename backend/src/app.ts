@@ -3,6 +3,7 @@ import express, { Request, Response, NextFunction } from "express";
 import notesRoute from "./routes/notes";
 import morgan from "morgan";
 import createHttpError, { isHttpError } from "http-errors";
+import usersRoute from "./routes/users";
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 //first endpoint
+app.use("/api/users", usersRoute);
 app.use("/api/notes", notesRoute);
 
 //error handling in case of path that is not present
