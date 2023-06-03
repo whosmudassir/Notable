@@ -16,6 +16,51 @@ export const fetchNotes = async () => {
   return resp.json();
 };
 
+export const getLoggedInUser = async () => {
+  const resp = await fetchData("/api/users", { method: "GET" });
+  return resp.json();
+};
+
+export interface SignUpCredentials {
+  username: string;
+  email: string;
+  password: string;
+}
+
+export const signUp = async (credentials: SignUpCredentials) => {
+  const resp = await fetchData("/api/users/signup", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(credentials),
+  });
+
+  return resp.json();
+};
+
+export interface LoginCredentials {
+  username: string;
+  password: string;
+}
+
+export const login = async (credentials: LoginCredentials) => {
+  const resp = await fetchData("/api/users/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(credentials),
+  });
+  return resp.json();
+};
+
+export const logout = async () => {
+  await fetchData("/api/users/logout", {
+    method: "POST",
+  });
+};
+
 export interface NoteInput {
   title: string;
   text?: string;
