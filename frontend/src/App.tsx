@@ -8,6 +8,7 @@ import AddNoteBtn from "./components/AddNoteBtn";
 import styles from "./styles/Note.module.css";
 import { NoteInput, deleteSingleNote, fetchNotes } from "./network/notes_api";
 import AddEditNoteModal from "./components/AddEditNoteModal";
+import SignupModal from "./components/SignupModal";
 
 function App() {
   const [notes, setNotes] = useState<NoteModel[]>([]);
@@ -56,6 +57,12 @@ function App() {
       <Navbar />
 
       <AddNoteBtn onClick={onOpen} />
+
+      {/* sign up modal */}
+
+      {true && (
+        <SignupModal onClose={() => null} onSignupSuccess={() => null} />
+      )}
 
       {/* add note modal */}
       {show && (

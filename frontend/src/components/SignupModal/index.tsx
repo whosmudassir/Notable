@@ -41,34 +41,51 @@ const SignupModal = ({ onClose, onSignupSuccess }: SignupModalProps) => {
         <Modal.Header closeButton>
           <Modal.Title>Sign up</Modal.Title>
         </Modal.Header>
-        {/* <Modal.Body>
-          <Form id="addNoteForm" onSubmit={() => null}>
+        <Modal.Body>
+          <Form id="signupForm" onSubmit={handleSubmit(onSubmit)}>
             <Form.Group className="mb-3">
               <Form.Control
                 type="text"
-                placeholder="Title"
-                isInvalid={!!errors.title}
-                {...register("title", { required: "Required" })}
+                isInvalid={!!errors?.username}
+                placeholder="Username"
+                {...register("username", { required: "Required" })}
               />
               <Form.Control.Feedback type="invalid">
-                {errors?.title?.message}
+                {errors?.username?.message}
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Control
-                as="textarea"
-                rows={16}
-                placeholder="Text"
-                {...register("text")}
+                type="email"
+                placeholder="Email"
+                {...register("email", { required: "Required" })}
               />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Control
+                type="password"
+                isInvalid={!!errors?.password}
+                placeholder="Password"
+                {...register("password", { required: "Required" })}
+              />
+
+              <Form.Control.Feedback type="invalid">
+                {errors?.password?.message}
+              </Form.Control.Feedback>
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button type="submit" form="addNoteForm" disabled={isSubmitting}>
-            {noteToEdit ? "Save" : "Add"}
+          <Button
+            type="submit"
+            form="signupForm"
+            disabled={isSubmitting}
+            style={{ width: "100%", padding: "14px" }}
+          >
+            Submit
           </Button>
-        </Modal.Footer> */}
+        </Modal.Footer>
       </Modal>
     </div>
   );
