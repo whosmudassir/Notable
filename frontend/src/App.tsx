@@ -9,6 +9,7 @@ import styles from "./styles/Note.module.css";
 import { NoteInput, deleteSingleNote, fetchNotes } from "./network/notes_api";
 import AddEditNoteModal from "./components/AddEditNoteModal";
 import SignupModal from "./components/SignupModal";
+import LoginModal from "./components/LoginModal";
 
 function App() {
   const [notes, setNotes] = useState<NoteModel[]>([]);
@@ -60,9 +61,13 @@ function App() {
 
       {/* sign up modal */}
 
-      {true && (
+      {false && (
         <SignupModal onClose={() => null} onSignupSuccess={() => null} />
       )}
+
+
+
+   {false && (   <LoginModal onClose={() => null} onLoginSuccess={() => null} />)}
 
       {/* add note modal */}
       {show && (
