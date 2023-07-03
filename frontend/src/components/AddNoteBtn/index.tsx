@@ -16,8 +16,16 @@ const AddNoteBtn = ({ onClick }: AddNoteBtnProps) => {
         justifyContent: "center",
       }}
     >
-      <Button size="sm" className={styles.primaryBtn} onClick={onClick}>
-        <FaPlus /> Add note
+      <Button
+        size="sm"
+        className={styles.primaryBtn}
+        onClick={onClick}
+        style={{
+          fontSize: "14px",
+          fontWeight: "bold",
+        }}
+      >
+        <FaPlus fontSize={"12px"} /> Add note
       </Button>
     </div>
   );
