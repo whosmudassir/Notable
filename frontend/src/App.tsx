@@ -11,22 +11,10 @@ import AddEditNoteModal from "./components/AddEditNoteModal";
 import SignupModal from "./components/SignupModal";
 import LoginModal from "./components/LoginModal";
 import LoggedInView from "./components/LoggedInView";
+import LoggedOutView from "./components/LoggedOutView";
 
 function App() {
-  return (
-    <>
-      <Navbar onLogout={() => {}} />
-
-      {/* sign up modal */}
-
-      {false && (
-        <SignupModal onClose={() => null} onSignupSuccess={() => null} />
-      )}
-
-      {false && <LoginModal onClose={() => null} onLoginSuccess={() => null} />}
-      <LoggedInView />
-    </>
-  );
+  return <>{false ? <LoggedInView /> : <LoggedOutView />}</>;
 }
 
 export default App;
