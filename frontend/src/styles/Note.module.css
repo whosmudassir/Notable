@@ -1,3 +1,28 @@
+@font-face {
+  font-family: "Anton";
+  src: url("../fonts/Poppins-Medium.ttf");
+}
+
+@font-face {
+  font-family: "PopR";
+  src: url("../fonts/Poppins-Regular.ttf");
+}
+
+.mainText {
+  font-family: Anton;
+  font-size: 30px;
+  color: #403c38;
+}
+
+.footerText {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 16px;
+  font-family: PopR;
+  font-size: 16px;
+}
+
 .cardStyles {
   background-color: #fff;
   min-width: 200px;
@@ -14,8 +39,31 @@
   overflow: hidden;
 }
 
+.demoCardStyles {
+  background-color: #fff;
+  width: 200px;
+  padding: 40px;
+  height: 150px;
+  border-radius: 30px;
+  border-color: #fff;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
 .cardWrapper {
   padding: 0px 40px 40px 40px;
+}
+
+.demoCardWrapper {
+  padding: 0px 40px 40px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modalWrapper {
