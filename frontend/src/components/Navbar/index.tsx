@@ -46,18 +46,13 @@ const Navbar = ({ loggedinUser, onLogin, onLogout, onSignup }: NavBarProps) => {
         paddingTop: "30px",
         paddingBottom: "22px",
         paddingRight: "20px",
-        paddingLeft: "20px",
+        paddingLeft: "40px",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
       }}
     >
-      <div />
-      <img
-        style={{ width: "200px", paddingLeft: "26px" }}
-        src={star}
-        alt="star"
-      />
+      <img style={{ width: "150px" }} src={star} alt="star" />
       <LoggedInView />
     </div>
   );
