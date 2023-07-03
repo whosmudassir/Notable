@@ -4,6 +4,7 @@ import Note from "../Note";
 import { Container, Row, Col, Spinner, Alert } from "react-bootstrap";
 import AddNoteBtn from "../AddNoteBtn";
 import styles from "../../styles/Note.module.css";
+import Navbar from "../Navbar";
 import {
   NoteInput,
   deleteSingleNote,
@@ -55,6 +56,7 @@ const LoggedInView = () => {
 
   return (
     <div>
+      <Navbar onLogout={() => {}} />
       <AddNoteBtn onClick={onOpen} />
       {/* add note modal */}
       {show && (
