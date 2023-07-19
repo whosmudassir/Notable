@@ -2,6 +2,7 @@ import React from "react";
 import SignupModal from "../SignupModal";
 import LoginModal from "../LoginModal";
 import star from "../../images/star.png";
+import notebook from "../../images/notebook.svg";
 import Note from "../Note";
 import {
   Container,
@@ -19,6 +20,7 @@ const LoggedOutView = () => {
   return (
     <>
       <div
+        className={styles.homePage}
         style={{
           display: "flex",
           flexDirection: "column",
@@ -42,17 +44,13 @@ const LoggedOutView = () => {
           <img style={{ width: "250px" }} src={star} alt="star" />
         </div>
         <Container className={styles.demoCardWrapper}>
-          <BsFillPencilFill
-            fontSize={"24px"}
-            style={{
-              color: "#63afde",
-              marginBottom: "16px",
-              marginRight: "14px",
-            }}
-          />{" "}
           <p className={styles.mainText}>Note taking made easy</p>{" "}
         </Container>
-        <Button>Sign Up</Button> <Button>Log in</Button>
+        <img style={{ width: "250px" }} src={notebook} alt="star" />
+        <div className={styles.btnsLayout}>
+          <Button className={styles.primaryBtn}>Sign Up</Button>{" "}
+          <Button className={styles.secondaryBtn}>Log in</Button>{" "}
+        </div>
       </div>
       <div className={styles.footerText}>
         A{" "}
