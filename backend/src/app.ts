@@ -7,6 +7,7 @@ import usersRoute from "./routes/users";
 import session from "express-session";
 import env from "./util/validateEnv";
 import MongoStore from "connect-mongo";
+import { requiresAuth } from "./middleware/auth";
 
 const app = express();
 
@@ -35,7 +36,7 @@ app.use(
 
 //first endpoint
 app.use("/api/users", usersRoute);
-app.use("/api/notes", notesRoute);
+app.use("/api/notes", requiresAuth, notesRoute);
 
 //error handling in case of path that is not present
 app.use((req, res, next) => {
