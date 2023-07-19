@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import SignupModal from "../SignupModal";
 import LoginModal from "../LoginModal";
 import star from "../../images/star.png";
@@ -16,7 +16,9 @@ import {
 import styles from "../../styles/Note.module.css";
 import { BsFillPencilFill } from "react-icons/bs";
 
-const LoggedOutView = () => {
+const LoggedOutView = ({ setLoggedinUser }: any) => {
+  const [showSignupModal, setSignupModal] = useState(false);
+  const [showLoginModal, setLoginModal] = useState(false);
   return (
     <>
       <div
@@ -29,11 +31,17 @@ const LoggedOutView = () => {
           height: "100vh",
         }}
       >
-        {false && (
-          <SignupModal onClose={() => null} onSignupSuccess={() => null} />
+        {showSignupModal && (
+          <SignupModal
+            onClose={() => setSignupModal(false)}
+            onSignupSuccess={(user) => setLoggedinUser(user)}
+          />
         )}
-        {false && (
-          <LoginModal onClose={() => null} onLoginSuccess={() => null} />
+        {showLoginModal && (
+          <LoginModal
+            onClose={() => setLoginModal(false)}
+            onLoginSuccess={(user) => setLoggedinUser(user)}
+          />
         )}
         <div
           style={{
@@ -48,8 +56,18 @@ const LoggedOutView = () => {
         </Container>
         <img style={{ width: "250px" }} src={notebook} alt="star" />
         <div className={styles.btnsLayout}>
-          <Button className={styles.primaryBtn}>Sign Up</Button>{" "}
-          <Button className={styles.secondaryBtn}>Log in</Button>{" "}
+          <Button
+            className={styles.primaryBtn}
+            onClick={() => setSignupModal(true)}
+          >
+            Sign Up
+          </Button>{" "}
+          <Button
+            className={styles.secondaryBtn}
+            onClick={() => setLoginModal(true)}
+          >
+            Log in
+          </Button>{" "}
         </div>
       </div>
       <div className={styles.footerText}>

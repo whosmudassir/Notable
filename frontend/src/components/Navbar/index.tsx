@@ -1,27 +1,27 @@
 import React from "react";
 import star from "../../images/star.png";
 import { User } from "../../models/user";
-import { Container, Navbar as Nav } from "react-bootstrap";
+import { Button, Container, Navbar as Nav } from "react-bootstrap";
 import { LoginCredentials, logout } from "../../network/notes_api";
 import Dropdown from "react-bootstrap/Dropdown";
 import { FaUserCircle } from "react-icons/fa";
+import styles from "../../styles/Note.module.css";
 
 interface NavBarProps {
   loggedinUser?: User | null;
-  onLogin?: () => void;
-  onLogout?: () => void;
-  onSignup?: () => void;
+  onLogout?: any;
 }
 
-const Navbar = ({ loggedinUser, onLogin, onLogout, onSignup }: NavBarProps) => {
+const Navbar = ({ loggedinUser, onLogout }: NavBarProps) => {
   const logoutUser = async () => {
     try {
       await logout();
-      // onLogout();
+      onLogout();
     } catch (e) {
       alert(e);
     }
   };
+
   const LoggedInView = () => {
     return (
       <Dropdown>
