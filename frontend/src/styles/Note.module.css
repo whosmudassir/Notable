@@ -10,8 +10,16 @@
 
 .mainText {
   font-family: Anton;
-  font-size: 30px;
+  font-size: 26px;
   color: #403c38;
+  text-align: center;
+  margin-top: 24px;
+}
+
+.btnsLayout {
+  margin-top: 24px;
+  display: flex;
+  gap: 18px;
 }
 
 .footerText {
@@ -60,7 +68,7 @@
 }
 
 .demoCardWrapper {
-  padding: 0px 40px 40px 40px;
+  padding: 0px 20px 0px 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -82,4 +90,30 @@
 .primaryBtn:hover {
   background-color: #e8c5ff;
   color: #403c38;
+}
+
+.primaryBtn:active {
+  background-color: #e8c5ff !important;
+  color: #403c38 !important;
+}
+
+.secondaryBtn {
+  padding: 10px 28px;
+  border-radius: 14px;
+  background-color: transparent;
+  border-width: 1px;
+  border-color: #403c38;
+  color: #403c38;
+}
+
+.secondaryBtn:hover {
+  background-color: transparent;
+  border-color: #403c38;
+  color: #403c38;
+}
+
+.secondaryBtn:active {
+  background-color: transparent !important;
+  color: #403c38 !important;
+  border-color: #403c38 !important;
 }
