@@ -85,7 +85,12 @@ const AddEditNoteModal = ({
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button type="submit" form="addNoteForm" disabled={isSubmitting}>
+          <Button
+            className={styles.primaryBtn}
+            type="submit"
+            form="addNoteForm"
+            disabled={isSubmitting}
+          >
             {noteToEdit ? "Save" : "Add"}
           </Button>
         </Modal.Footer>

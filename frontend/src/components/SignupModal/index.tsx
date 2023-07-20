@@ -78,6 +78,7 @@ const SignupModal = ({ onClose, onSignupSuccess }: SignupModalProps) => {
         </Modal.Body>
         <Modal.Footer>
           <Button
+            className={styles.primaryBtn}
             type="submit"
             form="signupForm"
             disabled={isSubmitting}

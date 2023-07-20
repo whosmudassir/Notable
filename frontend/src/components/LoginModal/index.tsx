@@ -54,7 +54,6 @@ const LoginModal = ({ onClose, onLoginSuccess }: LoginModalProps) => {
                 {errors?.username?.message}
               </Form.Control.Feedback>
             </Form.Group>
-       
 
             <Form.Group className="mb-3">
               <Form.Control
@@ -72,12 +71,13 @@ const LoginModal = ({ onClose, onLoginSuccess }: LoginModalProps) => {
         </Modal.Body>
         <Modal.Footer>
           <Button
+            className={styles.primaryBtn}
             type="submit"
             form="signupForm"
             disabled={isSubmitting}
             style={{ width: "100%", padding: "14px" }}
           >
-         Log in
+            Log in
           </Button>
         </Modal.Footer>
       </Modal>
