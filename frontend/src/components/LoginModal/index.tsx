@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import Form from "react-bootstrap/Form";
-import { Card, Modal, Button } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 import { User } from "../../models/user";
 import styles from "../../styles/Note.module.css";
 import { useForm } from "react-hook-form";

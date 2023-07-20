@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import Form from "react-bootstrap/Form";
-import { Card, Modal, Button } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 import styles from "../../styles/Note.module.css";
-import AddNoteBtn from "../AddNoteBtn";
+
 import { useForm } from "react-hook-form";
 import { createNote, updateSingleNote } from "../../network/notes_api";
 import { NoteInput } from "../../network/notes_api";
