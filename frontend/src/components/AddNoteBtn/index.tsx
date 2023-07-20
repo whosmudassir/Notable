@@ -22,10 +22,9 @@ const AddNoteBtn = ({ onClick }: AddNoteBtnProps) => {
         onClick={onClick}
         style={{
           fontSize: "14px",
-          fontWeight: "bold",
         }}
       >
-        <FaPlus fontSize={"12px"} /> Add note
+        Add note
       </Button>
     </div>
   );

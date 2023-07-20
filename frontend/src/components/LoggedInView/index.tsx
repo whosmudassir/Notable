@@ -12,7 +12,7 @@ import {
 } from "../../network/notes_api";
 import AddEditNoteModal from "../AddEditNoteModal";
 
-const LoggedInView = ({ loggedinUser, onLogout }: any) => {
+const LoggedInView = ({ username, loggedinUser, onLogout }: any) => {
   const [notes, setNotes] = useState<NoteModel[]>([]);
   const [show, setShow] = useState(false);
   const [noteToEdit, setNoteToEdit] = useState<NoteModel | null>(null);
@@ -56,7 +56,11 @@ const LoggedInView = ({ loggedinUser, onLogout }: any) => {
 
   return (
     <div>
-      <Navbar loggedinUser={loggedinUser} onLogout={onLogout} />
+      <Navbar
+        username={username}
+        loggedinUser={loggedinUser}
+        onLogout={onLogout}
+      />
       <AddNoteBtn onClick={onOpen} />
       {/* add note modal */}
       {show && (

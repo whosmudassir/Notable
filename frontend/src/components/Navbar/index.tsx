@@ -8,11 +8,12 @@ import { FaUserCircle } from "react-icons/fa";
 import styles from "../../styles/Note.module.css";
 
 interface NavBarProps {
+  username?: string;
   loggedinUser?: User | null;
   onLogout?: any;
 }
 
-const Navbar = ({ loggedinUser, onLogout }: NavBarProps) => {
+const Navbar = ({ username, loggedinUser, onLogout }: NavBarProps) => {
   const logoutUser = async () => {
     try {
       await logout();
@@ -33,7 +34,7 @@ const Navbar = ({ loggedinUser, onLogout }: NavBarProps) => {
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          <Dropdown.Item href="#/action-1">Hi, username</Dropdown.Item>
+          <Dropdown.Item href="#/action-1">Hi, {username}</Dropdown.Item>
           <Dropdown.Item onClick={logoutUser}>Logout</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
