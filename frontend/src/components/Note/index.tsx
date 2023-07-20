@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Note as NoteModel } from "../../models/note";
-import { Card, Modal, Button } from "react-bootstrap";
+import { Card, Modal } from "react-bootstrap";
 import styles from "../../styles/Note.module.css";
 import { dateFormatter } from "../../util/dateFortmatter";
 import { MdDelete, MdModeEdit } from "react-icons/md";

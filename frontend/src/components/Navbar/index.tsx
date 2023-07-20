@@ -1,11 +1,10 @@
 import React from "react";
 import star from "../../images/star.png";
 import { User } from "../../models/user";
-import { Button, Container, Navbar as Nav } from "react-bootstrap";
-import { LoginCredentials, logout } from "../../network/notes_api";
+
+import { logout } from "../../network/notes_api";
 import Dropdown from "react-bootstrap/Dropdown";
 import { FaUserCircle } from "react-icons/fa";
-import styles from "../../styles/Note.module.css";
 
 interface NavBarProps {
   username?: string;

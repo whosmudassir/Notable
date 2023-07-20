@@ -5,11 +5,7 @@ import { Container, Row, Col, Spinner, Alert } from "react-bootstrap";
 import AddNoteBtn from "../AddNoteBtn";
 import styles from "../../styles/Note.module.css";
 import Navbar from "../Navbar";
-import {
-  NoteInput,
-  deleteSingleNote,
-  fetchNotes,
-} from "../../network/notes_api";
+import { deleteSingleNote, fetchNotes } from "../../network/notes_api";
 import AddEditNoteModal from "../AddEditNoteModal";
 
 const LoggedInView = ({ username, loggedinUser, onLogout }: any) => {

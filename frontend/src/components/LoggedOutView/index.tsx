@@ -3,18 +3,8 @@ import SignupModal from "../SignupModal";
 import LoginModal from "../LoginModal";
 import star from "../../images/star.png";
 import notebook from "../../images/notebook.svg";
-import Note from "../Note";
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Spinner,
-  Alert,
-  Button,
-} from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 import styles from "../../styles/Note.module.css";
-import { BsFillPencilFill } from "react-icons/bs";
 
 const LoggedOutView = ({ setLoggedinUser }: any) => {
   const [showSignupModal, setSignupModal] = useState(false);
@@ -75,11 +65,16 @@ const LoggedOutView = ({ setLoggedinUser }: any) => {
         <a
           href={"https://github.com/whosmudassir/mern-app-tutorial"}
           target="_blank"
+          rel="noopener noreferrer"
         >
           Project
         </a>{" "}
         by{" "}
-        <a href="https://whosmudassir.vercel.app/" target="_blank">
+        <a
+          href="https://whosmudassir.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Mudassir Khan
         </a>
       </div>
