@@ -5,10 +5,10 @@ import {
   logout,
 } from "../controllers/users";
 import express from "express";
-import { requiresAuth } from "../middleware/auth";
+// import { requiresAuth } from "../middleware/auth";
 
 const router = express.Router();
-router.get("/", requiresAuth, getAuthenticatedUser);
+router.get("/", getAuthenticatedUser);
 router.post("/signup", signUp);
 router.post("/login", login);
 router.post("/logout", logout);
