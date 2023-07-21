@@ -1,5 +1,5 @@
 export const fetchData = async (input: RequestInfo, init: RequestInit) => {
-  const response = await fetch(input, init);
+  const response = await fetch("https://notable-be.onrender.com" + input, init);
   if (response.ok) {
     return response;
   } else {
@@ -17,7 +17,9 @@ export const fetchNotes = async () => {
 };
 
 export const getLoggedInUser = async () => {
-  const resp = await fetchData("/api/users", { method: "GET" });
+  const resp = await fetchData("/api/users", {
+    method: "GET",
+  });
   return resp.json();
 };
 
@@ -78,7 +80,9 @@ export const createNote = async (note: NoteInput) => {
 };
 
 export const deleteSingleNote = async (noteId: string) => {
-  await fetchData("/api/notes/" + noteId, { method: "DELETE" });
+  await fetchData("/api/notes/" + noteId, {
+    method: "DELETE",
+  });
 };
 
 export const updateSingleNote = async (noteId: string, note: NoteInput) => {
