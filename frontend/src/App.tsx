@@ -14,7 +14,7 @@ function App() {
         const user = await getLoggedInUser();
         setLoggedinUser(user);
       } catch (error) {
-        alert(error);
+        // alert(error);
       }
     }
     fetchLoggedinUser();

@@ -32,6 +32,7 @@ const LoggedInView = ({ username, loggedinUser, onLogout }: any) => {
         const notes = await fetchNotes();
         setNotes(notes);
       } catch (e) {
+        console.log(e);
         setShowNotesError(true);
       } finally {
         setLoading(false);
