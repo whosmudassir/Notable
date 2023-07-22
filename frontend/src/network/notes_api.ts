@@ -1,4 +1,4 @@
-export const fetchData = async (input: RequestInfo, init: RequestInit) => {
+const fetchData = async (input: RequestInfo, init?: RequestInit) => {
   const response = await fetch(
     "https://notable-be-new.onrender.com" + input,
     init
