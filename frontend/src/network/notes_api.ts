@@ -1,9 +1,12 @@
 export const fetchData = async (input: RequestInfo, init: RequestInit) => {
-  const response = await fetch("https://notable-be.onrender.com" + input, init);
+  console.log("req::", "https://notable-be.onrender.com" + input);
+  const response = await fetch(input, init);
+  console.log("1st resp::", response);
   if (response.ok) {
     return response;
   } else {
     const errorBody = await response.json();
+    console.log("1st error :::: ", errorBody);
     const errorMessage = errorBody.error;
     throw Error(errorMessage);
   }
