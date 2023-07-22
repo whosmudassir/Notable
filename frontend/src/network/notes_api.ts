@@ -1,5 +1,8 @@
 export const fetchData = async (input: RequestInfo, init: RequestInit) => {
-  const response = await fetch(input, init);
+  const response = await fetch(
+    "https://notable-be-new.onrender.com" + input,
+    init
+  );
   console.log("1st resp::", response);
   if (response.ok) {
     return response;
