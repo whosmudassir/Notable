@@ -16,6 +16,7 @@ const fetchData = async (input: RequestInfo, init?: RequestInit) => {
 
 export const fetchNotes = async () => {
   const resp = await fetchData("/api/notes", {
+    credentials: "include",
     method: "GET",
   });
   return resp.json();
@@ -23,6 +24,7 @@ export const fetchNotes = async () => {
 
 export const getLoggedInUser = async () => {
   const resp = await fetchData("/api/users", {
+    credentials: "include",
     method: "GET",
   });
   return resp.json();
@@ -36,8 +38,9 @@ export interface SignUpCredentials {
 
 export const signUp = async (credentials: SignUpCredentials) => {
   const resp = await fetchData("/api/users/signup", {
-    method: "POST",
     credentials: "include",
+    method: "POST",
+
     headers: {
       "Content-Type": "application/json",
     },
@@ -54,8 +57,9 @@ export interface LoginCredentials {
 
 export const login = async (credentials: LoginCredentials) => {
   const resp = await fetchData("/api/users/login", {
-    method: "POST",
     credentials: "include",
+    method: "POST",
+
     headers: {
       "Content-Type": "application/json",
     },
@@ -66,6 +70,7 @@ export const login = async (credentials: LoginCredentials) => {
 
 export const logout = async () => {
   await fetchData("/api/users/logout", {
+    credentials: "include",
     method: "POST",
   });
 };
@@ -77,6 +82,7 @@ export interface NoteInput {
 
 export const createNote = async (note: NoteInput) => {
   const resp = await fetchData("/api/notes", {
+    credentials: "include",
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -88,12 +94,14 @@ export const createNote = async (note: NoteInput) => {
 
 export const deleteSingleNote = async (noteId: string) => {
   await fetchData("/api/notes/" + noteId, {
+    credentials: "include",
     method: "DELETE",
   });
 };
 
 export const updateSingleNote = async (noteId: string, note: NoteInput) => {
   const resp = await fetchData("/api/notes/" + noteId, {
+    credentials: "include",
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
