@@ -37,6 +37,7 @@ export interface SignUpCredentials {
 export const signUp = async (credentials: SignUpCredentials) => {
   const resp = await fetchData("/api/users/signup", {
     method: "POST",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
@@ -54,6 +55,7 @@ export interface LoginCredentials {
 export const login = async (credentials: LoginCredentials) => {
   const resp = await fetchData("/api/users/login", {
     method: "POST",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
