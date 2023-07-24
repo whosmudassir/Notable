@@ -2,7 +2,7 @@ const fetchData = async (input: RequestInfo, init?: RequestInit) => {
   const response = await fetch(input, init);
   console.log("1st resp::", response);
   if (response.ok) {
-    return response.json();
+    return response;
   } else {
     const errorBody = await response.json();
     console.log("1st error :::: ", errorBody);
@@ -15,14 +15,14 @@ export const fetchNotes = async () => {
   const resp = await fetchData("/api/notes", {
     method: "GET",
   });
-  return resp;
+  return resp.json();
 };
 
 export const getLoggedInUser = async () => {
   const resp = await fetchData("/api/users", {
     method: "GET",
   });
-  return resp;
+  return resp.json();
 };
 
 export interface SignUpCredentials {
@@ -40,7 +40,7 @@ export const signUp = async (credentials: SignUpCredentials) => {
     body: JSON.stringify(credentials),
   });
 
-  return resp;
+  return resp.json();
 };
 
 export interface LoginCredentials {
@@ -51,27 +51,18 @@ export interface LoginCredentials {
 export const login = async (credentials: LoginCredentials) => {
   const resp = await fetchData("/api/users/login", {
     method: "POST",
-    mode: "cors",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(credentials),
   });
-  return resp;
+  return resp.json();
 };
 
 export const logout = async () => {
-  const response = await fetch("/api/users/logout", {
+  await fetchData("/api/users/logout", {
     method: "POST",
   });
-
-  if (response.ok) {
-    return response;
-  } else {
-    const errorBody = await response.json();
-    const errorMessage = errorBody.error;
-    throw Error(errorMessage);
-  }
 };
 
 export interface NoteInput {
@@ -87,7 +78,7 @@ export const createNote = async (note: NoteInput) => {
     },
     body: JSON.stringify(note),
   });
-  return resp;
+  return resp.json();
 };
 
 export const deleteSingleNote = async (noteId: string) => {
@@ -104,5 +95,5 @@ export const updateSingleNote = async (noteId: string, note: NoteInput) => {
     },
     body: JSON.stringify(note),
   });
-  return resp;
+  return resp.json();
 };
