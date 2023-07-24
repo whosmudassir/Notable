@@ -1,8 +1,9 @@
-import { url } from "../App";
-
 const fetchData = async (input: RequestInfo, init?: RequestInit) => {
-  const response = await fetch(`${url}` + input, init);
-  console.log("1st resp::", response);
+  const response = await fetch(
+    "https://notable-be-new.onrender.com" + input,
+    init
+  );
+  console.log("1st url::", "https://notable-be-new.onrender.com" + input);
   if (response.ok) {
     return response;
   } else {
