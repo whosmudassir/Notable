@@ -1,9 +1,6 @@
 const fetchData = async (input: RequestInfo, init?: RequestInit) => {
-  const response = await fetch(
-    `${process.env.REACT_APP_BACKEND_URL}` + input,
-    init
-  );
-  console.log("1st url::", `${process.env.REACT_APP_BACKEND_URL}` + input);
+  const response = await fetch(input, init);
+  console.log("1st url::", input);
   if (response.ok) {
     return response;
   } else {
