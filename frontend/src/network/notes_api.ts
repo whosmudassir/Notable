@@ -1,9 +1,9 @@
 const fetchData = async (input: RequestInfo, init?: RequestInit) => {
   const response = await fetch(
-    "https://notable-be-new.onrender.com" + input,
+    `${process.env.REACT_APP_BACKEND_URL}` + input,
     init
   );
-  console.log("1st url::", "https://notable-be-new.onrender.com" + input);
+  console.log("1st url::", `${process.env.REACT_APP_BACKEND_URL}` + input);
   if (response.ok) {
     return response;
   } else {

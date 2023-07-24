@@ -5,8 +5,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NotesPage from "./pages/NotesPage";
 import NoPageFound from "./pages/NoPageFound";
 
-export const url = process.env.REACT_APP_BACKEND_URL;
-
 function App() {
   const [loggedinUser, setLoggedinUser] = useState<any>(null);
 
