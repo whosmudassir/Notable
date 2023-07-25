@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Spinner } from "react-bootstrap";
 import { User } from "../../models/user";
 import styles from "../../styles/Note.module.css";
 import { useForm } from "react-hook-form";
@@ -19,13 +19,19 @@ const SignupModal = ({ onClose, onSignupSuccess }: SignupModalProps) => {
     formState: { errors, isSubmitting },
   } = useForm<SignUpCredentials>();
 
+  const [loading, setLoading] = useState(false);
+
   //on submit of form
   const onSubmit = async (credentials: SignUpCredentials) => {
     try {
+      setLoading(true);
       const newUser = await signUp(credentials);
       onSignupSuccess(newUser);
     } catch (error) {
       alert(error);
+      setLoading(false);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -84,7 +90,19 @@ const SignupModal = ({ onClose, onSignupSuccess }: SignupModalProps) => {
             disabled={isSubmitting}
             style={{ width: "100%", padding: "14px" }}
           >
-            Submit
+            {loading ? (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Spinner animation="border" />
+              </div>
+            ) : (
+              <> Submit </>
+            )}
           </Button>
         </Modal.Footer>
       </Modal>

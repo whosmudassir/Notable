@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Spinner } from "react-bootstrap";
 import { User } from "../../models/user";
 import styles from "../../styles/Note.module.css";
 import { useForm } from "react-hook-form";
@@ -19,13 +19,19 @@ const LoginModal = ({ onClose, onLoginSuccess }: LoginModalProps) => {
     formState: { errors, isSubmitting },
   } = useForm<LoginCredentials>();
 
+  const [loading, setLoading] = useState(false);
+
   //on submit of form
   const onSubmit = async (credentials: LoginCredentials) => {
     try {
+      setLoading(true);
       const user = await login(credentials);
       onLoginSuccess(user);
     } catch (error) {
       alert(error);
+      setLoading(false);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -77,7 +83,19 @@ const LoginModal = ({ onClose, onLoginSuccess }: LoginModalProps) => {
             disabled={isSubmitting}
             style={{ width: "100%", padding: "14px" }}
           >
-            Log in
+            {loading ? (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Spinner animation="border" />
+              </div>
+            ) : (
+              <> Log in </>
+            )}
           </Button>
         </Modal.Footer>
       </Modal>
